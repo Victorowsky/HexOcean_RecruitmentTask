@@ -14,7 +14,11 @@ const SandwichInputs = ({ breadSlices, setBreadSlices }) => {
 	let createMenuItems = [];
 
 	for (let index = 0; index < 10; index++) {
-		createMenuItems.push(<MenuItem value={index + 1}>{index + 1}</MenuItem>);
+		createMenuItems.push(
+			<MenuItem key={index} value={index + 1}>
+				{index + 1}
+			</MenuItem>
+		);
 	}
 
 	return (

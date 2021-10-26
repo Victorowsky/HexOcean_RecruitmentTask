@@ -27,13 +27,17 @@ const PizzaInputs = ({
 
 	for (let index = 0; index < 18; index++) {
 		createPizzaSlicesMenuItems.push(
-			<MenuItem value={index + 1}>{index + 1}</MenuItem>
+			<MenuItem key={index} value={index + 1}>
+				{index + 1}
+			</MenuItem>
 		);
 	}
 
 	for (let index = 0; index < 100; index++) {
 		createDiameterMenuItems.push(
-			<MenuItem value={index + 1}>{index + 1}&#8451;</MenuItem>
+			<MenuItem key={index} value={index + 1}>
+				{index + 1}&#8451;
+			</MenuItem>
 		);
 	}
 	return (

@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { MenuProps } from "../../App";
 import { setAlert } from "../../store/alertSlice";
 import PizzaInputs from "./PizzaInputs";
@@ -32,9 +32,22 @@ const useStyles = () => {
 			position: "relative",
 			gap: "15px",
 			overflow: "hidden",
+			"@media(min-width:400px)": {
+				animation: `fadeIn 500ms forwards ease-in-out`,
+			},
 			"@media(max-width:400px)": {
 				height: "100vh",
 				width: "100vw",
+			},
+			"@keyframes fadeIn": {
+				from: {
+					opacity: "0",
+					transform: "translateY(30px)",
+				},
+				to: {
+					opacity: "1",
+					transform: "translateY(0px)",
+				},
 			},
 		},
 		box: {
@@ -66,11 +79,24 @@ const hoursFromMinutes = (time) => {
 	return { hours, minutes };
 };
 
+const types = [
+	{
+		typeName: "pizza",
+		displayName: "Pizza",
+	},
+	{
+		typeName: "soup",
+		displayName: "Soup",
+	},
+	{
+		typeName: "sandwich",
+		displayName: "Sandwich",
+	},
+];
+
 const fetchPostUrl = "https://frosty-wood-6558.getsandbox.com:443/dishes";
 
 const Form = () => {
-	const { types } = useSelector((state) => state.types);
-
 	const [dish, setDish] = useState("");
 	const [prepariationTime, setPrepariationTime] = useState("");
 	const [type, setType] = useState("");
@@ -271,7 +297,6 @@ const Form = () => {
 					value={prepariationTime}
 					type="number"
 					onChange={handleChangePreparationTime}
-					autoComplete={0}
 				/>
 				<Button onClick={handleValidateData} variant="outlined">
 					Add dish

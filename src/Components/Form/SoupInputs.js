@@ -19,7 +19,11 @@ const SoupInputs = ({ spiciness, setSpiciness }) => {
 	let createMenuItems = [];
 
 	for (let index = 0; index < 10; index++) {
-		createMenuItems.push(<MenuItem value={index + 1}>{index + 1}</MenuItem>);
+		createMenuItems.push(
+			<MenuItem key={index} value={index + 1}>
+				{index + 1}
+			</MenuItem>
+		);
 	}
 
 	return (
@@ -28,7 +32,6 @@ const SoupInputs = ({ spiciness, setSpiciness }) => {
 				<InputLabel id="spicinessLabel">Spiciness</InputLabel>
 				<Select
 					labelId="spicinessLabel"
-					id="demo-simple-select"
 					value={spiciness}
 					label="Spiciness"
 					onChange={handleChangeSpiciness}

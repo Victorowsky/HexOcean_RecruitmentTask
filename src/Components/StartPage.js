@@ -1,39 +1,36 @@
-import { Button, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleIsForm } from "../store/formSlice";
+import { Button, Card, Typography } from "@mui/material";
 
-const useStyles = (isForm) => {
+const useStyles = () => {
 	return {
-		box: {
+		card: {
+			width: "100%",
+			maxWidth: "400px",
+			height: "400px",
+			padding: "15px",
 			display: "flex",
 			flexDirection: "column",
-			width: "400px",
-			height: "100%",
+			alignItems: "center",
+			justifyContent: "center",
 		},
 	};
 };
 
-const StartPage = () => {
-	const dispatch = useDispatch();
+const StartPage = ({ setIsForm }) => {
+	const classes = useStyles();
 
 	const handleMakeAnOrder = () => {
-		dispatch(toggleIsForm());
+		setIsForm(true);
 	};
 
-	const { isForm } = useSelector((state) => state.form);
-
-	const classes = useStyles(isForm);
-
 	return (
-		<Box sx={classes.box}>
+		<Card sx={classes.card}>
 			<Typography variant="h4" align={"center"} mb={2}>
 				Welcome!
 			</Typography>
 			<Button variant="contained" onClick={handleMakeAnOrder}>
 				Make an order
 			</Button>
-		</Box>
+		</Card>
 	);
 };
 
