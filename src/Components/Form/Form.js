@@ -138,7 +138,8 @@ const Form = () => {
 		setType("");
 	};
 
-	const handleValidateData = () => {
+	const handleValidateData = (e) => {
+		e.preventDefault();
 		const time = hoursFromMinutes(prepariationTime);
 		const formatTime = `${time.hours}:${time.minutes}:00`;
 
@@ -275,6 +276,10 @@ const Form = () => {
 				<Button onClick={handleValidateData} variant="outlined">
 					Add dish
 				</Button>
+				<button
+					style={{ display: "none" }}
+					onClick={handleValidateData}
+				></button>
 			</form>
 		</Card>
 	);
