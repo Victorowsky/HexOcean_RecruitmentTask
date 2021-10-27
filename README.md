@@ -1,10 +1,10 @@
 # Setup Project
-
-Node.js => v16.9.1
-React => 17.0.2
-
 - npm install
 - npm start
+
+Node.js => v16.9.1
+
+React => 17.0.2
 
 # About Project
 
