@@ -232,7 +232,7 @@ const Form = () => {
 					return res.json();
 				}
 			})
-			.then((res) => {
+			.then(() => {
 				handleAlert("success", "You made your dish!");
 				clearForm();
 			})
