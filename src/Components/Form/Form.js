@@ -233,7 +233,7 @@ const Form = () => {
 				}
 			})
 			.then((res) => {
-				handleAlert("success", "You made your own dish!");
+				handleAlert("success", "You made your dish!");
 				clearForm();
 			})
 			.catch((err) => {
@@ -247,7 +247,7 @@ const Form = () => {
 	return (
 		<Card sx={classes.card}>
 			<Typography variant="h4" align="center">
-				Create your own dish!
+				Create your dish!
 			</Typography>
 			<form style={classes.form}>
 				<TextField
