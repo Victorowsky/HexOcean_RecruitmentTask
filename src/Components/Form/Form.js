@@ -113,8 +113,12 @@ const Form = () => {
 
 	const handleSelectType = (e) => {
 		const selectedType = e.target.value;
-		setPrepariationTime("");
 		setType(selectedType);
+		setPrepariationTime("");
+		setDiameter("");
+		setBreadSlices("");
+		setPizzaSlices("");
+		setSpiciness("");
 	};
 
 	const createTypesSelect = () => {
