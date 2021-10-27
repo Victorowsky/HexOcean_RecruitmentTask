@@ -74,6 +74,7 @@ const formatTime = (time) => {
 };
 
 const hoursFromMinutes = (time) => {
+	time = Math.round(time);
 	const hours = formatTime(Math.floor(time / 60));
 	const minutes = formatTime(time % 60);
 	return { hours, minutes };
@@ -131,7 +132,7 @@ const Form = () => {
 		});
 	};
 
-	const selectTypes = () => {
+	const selectType = () => {
 		if (type === "pizza") {
 			return (
 				<PizzaInputs
@@ -155,7 +156,7 @@ const Form = () => {
 
 	const handleChangePreparationTime = (e) => {
 		if (e.target.value >= 0) {
-			setPrepariationTime(e.target.value);
+			setPrepariationTime(Number(e.target.value));
 		}
 	};
 
@@ -165,7 +166,12 @@ const Form = () => {
 		setBreadSlices("");
 		setPizzaSlices("");
 		setPrepariationTime("");
+		setSpiciness("");
 		setType("");
+	};
+
+	const handleAlert = (type, message) => {
+		dispatch(setAlert({ type, message }));
 	};
 
 	const handleValidateData = (e) => {
@@ -174,56 +180,32 @@ const Form = () => {
 		const formatTime = `${time.hours}:${time.minutes}:00`;
 
 		if (!dish) {
-			return dispatch(
-				setAlert({ type: "warning", message: "Please enter dish name" })
-			);
+			return handleAlert("warning", "Please enter dish name");
 		}
 
 		if (type === "") {
-			return dispatch(
-				setAlert({ type: "warning", message: "Choose type of the dish" })
-			);
+			return handleAlert("warning", "Choose type of the dish");
 		}
 
 		if (type === "pizza") {
 			if (!pizzaSlices) {
-				return dispatch(
-					setAlert({
-						type: "warning",
-						message: "Please enter number of slices",
-					})
-				);
+				return handleAlert("warning", "Please enter number of slices");
 			}
 			if (!diameter) {
-				return dispatch(
-					setAlert({ type: "warning", message: "Please enter diameter" })
-				);
+				return handleAlert("warning", "Please enter diameter");
 			}
-		}
-
-		if (type === "soup" && !spiciness) {
-			return dispatch(
-				setAlert({ type: "warning", message: "Please enter spiciness scale" })
-			);
-		}
-
-		if (type === "sandwich" && !breadSlices) {
-			return dispatch(
-				setAlert({ type: "warning", message: "Please enter number of slices" })
-			);
+		} else if (type === "soup" && !spiciness) {
+			return handleAlert("warning", "Please enter spiciness scale");
+		} else if (type === "sandwich" && !breadSlices) {
+			return handleAlert("warning", "Please enter diameter");
 		}
 
 		if (!prepariationTime) {
-			return dispatch(
-				setAlert({ type: "warning", message: "Please enter preparation time" })
-			);
-		} else if (prepariationTime >= 6000) {
-			return dispatch(
-				setAlert({
-					type: "warning",
-					message: "Your preparation time is too long",
-				})
-			);
+			return handleAlert("warning", "Please enter prepariation time");
+		}
+
+		if (prepariationTime >= 6000) {
+			return handleAlert("warning", "Preparation time is too long");
 		}
 		setIsLoading(true);
 
@@ -251,9 +233,7 @@ const Form = () => {
 				}
 			})
 			.then((res) => {
-				dispatch(
-					setAlert({ type: "success", message: "You made your own dish!" })
-				);
+				handleAlert("success", "You made your own dish!");
 				clearForm();
 			})
 			.catch((err) => {
@@ -266,7 +246,6 @@ const Form = () => {
 
 	return (
 		<Card sx={classes.card}>
-			{isLoading && <LinearProgress sx={classes.progress} color="primary" />}
 			<Typography variant="h4" align="center">
 				Create your own dish!
 			</Typography>
@@ -293,7 +272,7 @@ const Form = () => {
 						{createTypesSelect()}
 					</Select>
 				</FormControl>
-				{selectTypes()}
+				{selectType()}
 				<TextField
 					label="Preparation time"
 					required
@@ -310,6 +289,7 @@ const Form = () => {
 					onClick={handleValidateData}
 				></button>
 			</form>
+			{isLoading && <LinearProgress sx={classes.progress} color="primary" />}
 		</Card>
 	);
 };

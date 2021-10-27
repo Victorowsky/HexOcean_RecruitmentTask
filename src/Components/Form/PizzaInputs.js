@@ -21,8 +21,7 @@ const PizzaInputs = ({
 	let createDiameterMenuItems = [];
 
 	const handleChangeDiameter = (e) => {
-		if (e.target.value >= 0 && e.target.value <= 100)
-			setDiameter(Number(e.target.value));
+		setDiameter(Number(e.target.value));
 	};
 
 	for (let index = 0; index < 18; index++) {

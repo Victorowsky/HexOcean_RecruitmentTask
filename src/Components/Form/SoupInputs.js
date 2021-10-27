@@ -11,9 +11,7 @@ const classes = {
 
 const SoupInputs = ({ spiciness, setSpiciness }) => {
 	const handleChangeSpiciness = (e) => {
-		if ((e.target.value <= 10 && e.target.value > 0) || e.target.value === "") {
-			setSpiciness(Number(e.target.value));
-		}
+		setSpiciness(Number(e.target.value));
 	};
 
 	let createMenuItems = [];
