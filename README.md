@@ -12,4 +12,4 @@ React => 17.0.2
 
 # About Project
 
-To make project I used React with Material UI library. Whole project took me about 4 hours.
+To make a project I used React with Material UI library. The whole project took me about 4 hours.
