@@ -3,6 +3,8 @@ https://hexocean.legga.pl/
 
 
 # Setup Project
+- git clone https://github.com/Victorowsky/HexOcean_RecruitmentTask.git
+- cd .\HexOcean_RecruitmentTask\
 - npm install
 - npm start
 
