@@ -1,6 +1,9 @@
 ### Setup Project
+
 # - npm install
+
 # - npm start
 
 ### About Project
-# Project took me about 4 hours 
+
+# To make project I used React with Material UI library. Whole project took me about 4 hours.
