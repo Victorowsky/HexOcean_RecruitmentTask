@@ -9,7 +9,11 @@ https://hexocean.legga.pl/
 - npm install
 - npm start
 
+# Versions
+
 Node.js => v16.9.1
+
+NPM => 8.1.0
 
 React => 17.0.2
 
